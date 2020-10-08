@@ -44,9 +44,14 @@ void Detenator::draw()
 
 void Detenator::update()
 {	
-	move();
-	if(keepTurning)
+	if (keepTurning) {
+		move();
 		turn();
+	}
+	else
+	{
+		getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
+	}
 }
 
 void Detenator::clean() { }
@@ -64,12 +69,12 @@ void Detenator::move()
 	getRigidBody()->velocity = getRigidBody()->initialVel;
 	getRigidBody()->acceleration += gravity;
 	getRigidBody()->velocity += (getRigidBody()->acceleration+ gravity) * deltaTime ;
-	if (!m_isGravityEnabled) getRigidBody()->velocity.y = 0;
+	
 	if (getRigidBody()->initialVel.y<0 && getRigidBody()->velocity.y==0.0)
 	{
 		getRigidBody()->initialVel.y = -1 * getRigidBody()->initialVel.y;
 	}
-	getTransform()->position += getRigidBody()->velocity * deltaTime;
+	getTransform()->position += getRigidBody()->velocity * deltaTime * Util::PPM;
 
 	std::cout <<"Vel:  "<< getRigidBody()->velocity.x << "    " << getRigidBody()->velocity.y << std::endl;
 	std::cout << "Pos:  " << getTransform()->position.x << "    " << getTransform()->position.y << std::endl;

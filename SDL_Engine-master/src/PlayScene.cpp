@@ -98,14 +98,7 @@ void PlayScene::GUI_Function()
 	}
 	
 	ImGui::Separator();
-	static bool isGravityEnabled =false;
-	if (ImGui::Checkbox("Gravity", &isGravityEnabled))
-	{
-		std::cout << "Gravity Enabled" << std::endl;
-		m_pDetenator->m_isGravityEnabled = isGravityEnabled;
-	}
-	ImGui::Separator();
-
+	
 	static float pos = m_pPlayer->getTransform()->position.x;
 	
 	if (ImGui::SliderFloat("Player Position", &pos, 0.0f,800.0f - 85.0f) );
@@ -119,7 +112,7 @@ void PlayScene::GUI_Function()
 	}
 	static float EnemyPos = m_pEnemy->getTransform()->position.x;
 
-	if (ImGui::SliderFloat("Enemy Position", &EnemyPos, 0.0f, 710.0f));
+	if (ImGui::SliderFloat("Enemy Position", &EnemyPos, 0.0f, 600.0f));
 	{
 		if (!throwBall)
 		{
@@ -130,8 +123,8 @@ void PlayScene::GUI_Function()
 	static float angle = 0;
 	if (ImGui::SliderFloat("Angle", &angle, 0.0f, 90.0f));
 	{}
-	static float vel = Util::magnitude(m_pDetenator->getRigidBody()->velocity);
-	if (ImGui::SliderFloat("Initial Velocity", &vel, 10.0f, 500.0f) );
+	static float vel = 95.0f;
+	if (ImGui::SliderFloat("Initial Velocity", &vel, 10.0f, 200.0f) );
 	{
 		if (!throwBall) {
 			m_pDetenator->getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
@@ -147,7 +140,6 @@ void PlayScene::GUI_Function()
 		pos = 85.0f;
 		EnemyPos = 710.0f;
 		vel = 0.0f;
-		isGravityEnabled = false;
 		m_pDetenator->reset();
 		m_pPlayer->reset();
 		m_pEnemy->reset();

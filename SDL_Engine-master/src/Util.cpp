@@ -7,7 +7,7 @@
 const float Util::EPSILON = glm::epsilon<float>();
 const float Util::Deg2Rad = glm::pi<float>() / 180.0f;
 const float Util::Rad2Deg = 180.0f / glm::pi<float>();
-
+const float Util::PPM = 800.0f / 600.0f;
 Util::Util()
 = default;
 
