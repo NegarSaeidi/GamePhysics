@@ -194,8 +194,8 @@ void PlayScene::GUI_Function()
 		initialVel = vel;
 		if (!throwBall) {
 			m_pDetenator->getRigidBody()->velocity = glm::vec2(0.0f, 0.0f);
-			m_pDetenator->getRigidBody()->initialVel.x = vel * cos(Util::Deg2Rad * (printableAngle))* Util::PPM;
-			m_pDetenator->getRigidBody()->initialVel.y = -vel * sin(Util::Deg2Rad * (printableAngle))* Util::PPM;
+			m_pDetenator->getRigidBody()->velocity.x = vel * cos(Util::Deg2Rad * (printableAngle))* Util::PPM;
+			m_pDetenator->getRigidBody()->velocity.y = -vel * sin(Util::Deg2Rad * (printableAngle))* Util::PPM;
 		}
 	}
 	ImGui::Separator();

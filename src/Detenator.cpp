@@ -63,17 +63,11 @@ void Detenator::turn()
 
 void Detenator::move()
 {
-	float deltaTime = 1.0f / 30.0f;
+	float deltaTime = 1.0f / 60.0f;
 	glm::vec2 gravity = glm::vec2(0.0f, 9.8f);
 
-	getRigidBody()->velocity = getRigidBody()->initialVel;
-	getRigidBody()->acceleration += gravity;
-	getRigidBody()->velocity += (getRigidBody()->acceleration) * deltaTime ;
+	getRigidBody()->velocity += (getRigidBody()->acceleration+gravity) * deltaTime ;
 	
-	if (getRigidBody()->initialVel.y<0 && getRigidBody()->velocity.y==0.0)
-	{
-		getRigidBody()->initialVel.y = -1 * getRigidBody()->initialVel.y;
-	}
 	getTransform()->position += (getRigidBody()->velocity * deltaTime) ;
 	
 
